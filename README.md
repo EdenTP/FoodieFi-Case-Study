@@ -1,7 +1,11 @@
 
 # Foodie-Fi SQL Challenge Solutions
 
-This repository contains my solutions for the **Foodie-Fi SQL Challenge** from Data With Danny. The challenge involves analyzing subscription data from a fictional streaming service, Foodie-Fi, which offers various food-related plans to its customers. Below are my solutions to the data analysis questions presented in the challenge.
+
+## Overview
+This repository contains SQL solutions for the **Foodie-Fi** case study, part of the **8 Week SQL Challenge** by **Data With Danny**. The case study focuses on subscription analytics for a fictional food-based streaming platform, providing insights into customer behavior, subscription trends, churn rates, and plan transitions.
+
+Link to the case study: [8 Week SQL Challenge - Case Study 3](https://8weeksqlchallenge.com/case-study-3/)
 
 ---
 
@@ -361,6 +365,5 @@ WHERE
 
 ---
 
-## Conclusion
-
-These solutions were designed to efficiently extract insights from the Foodie-Fi subscription dataset using SQL queries. Feel free to explore each query and modify them for further analysis.
+## Author
+This analysis was created as part of **[Data With Danny](https://github.com/datawithdanny)**'s SQL challenge.
