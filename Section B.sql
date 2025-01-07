@@ -1,10 +1,10 @@
 -- B. Data Analysis Questions
--- How many customers has Foodie-Fi ever had?
+-- 1.How many customers has Foodie-Fi ever had?
 Select 
   count(distinct customer_id) as Number_of_Customers 
 from 
   subscriptions;
--- What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
+-- 2.What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
 select 
   plan_name, 
   month(start_date) as Month_of_start, 
@@ -19,7 +19,7 @@ group by
   month_of_start 
 order by 
   month_of_start asc;
--- What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
+-- 3.What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
 select 
   plan_name, 
   count(*) number_of_events 
@@ -32,7 +32,7 @@ group by
   plan_name 
 order by 
   plan_name asc;
--- What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
+-- 4.What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
 with churn_table as (
   Select 
     count(distinct customer_id) as churners 
@@ -53,7 +53,7 @@ from
   left join churn_table as c on 1 = 1 
 group by 
   churners;
--- How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?
+-- 5.How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?
 with prev_plan as (
   select 
     *, 
@@ -95,7 +95,7 @@ from
   left join churners on 1 = 1 
 group by 
   churned;
--- What is the number and percentage of customer plans after their initial free trial?
+-- 6.What is the number and percentage of customer plans after their initial free trial?
 with plan_cte as (
   select 
     *, 
@@ -146,7 +146,7 @@ from
 group by 
   plan_name, 
   retained;
--- What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
+-- 7.What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
 with max_dates as (
   select 
     customer_id, 
@@ -183,7 +183,7 @@ from
 group by 
   pd.customer_count, 
   pd.plan_name;
--- How many customers have upgraded to an annual plan in 2020?
+-- 8.How many customers have upgraded to an annual plan in 2020?
 with non_annual as (
   select 
     customer_id 
@@ -212,7 +212,7 @@ select
 from 
   annual_customer as ac 
   inner join non_annual as na on na.customer_id = ac.customer_id;
--- How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?
+-- 9.How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?
 with non_annual as (
   select 
     customer_id, 
@@ -253,7 +253,7 @@ select
   ) as avg_days_to_upgrade 
 from 
   day_to_upgrade_cte;
--- Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
+-- 10.Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
 with non_annual as (
   select 
     customer_id, 
@@ -316,7 +316,7 @@ group by
   period 
 order by 
   split_part(period, '-', 1):: number asc;
--- How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
+-- 11.How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
 with change_cte as (
   select 
     customer_id, 
